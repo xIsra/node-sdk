@@ -1,19 +1,12 @@
 import createSdk, { DeliveryMethod } from '@descope/core-js-sdk';
+import { JwTPayload } from 'jose';
 
 type Head<T extends ReadonlyArray<any>> = T extends readonly [] ? never : T[0];
-
-/** Parsed JWT token */
-interface Token {
-  sub?: string;
-  exp?: number;
-  iss?: string;
-  [claim: string]: unknown;
-}
 
 /** All information regarding token including the raw JWT, parsed JWT and cookies */
 export interface AuthenticationInfo {
   jwt: string;
-  token: Token;
+  token: JwTPayload;
   cookies?: string[];
 }
 
